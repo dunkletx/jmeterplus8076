@@ -1,0 +1,28 @@
+<!--
+ Copyright 2022 MobiledgeX, Inc
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<h3 style="text-align: left;"><span style="color: #0000ff;">port:8076</span><span style="background-color: #000000;"><span style="color: #ffffff;">Mobiledge</span><span style="color: #ffffff;"><span style="color: #99cc00;">X&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #00ff00;">Port:8076</span>&nbsp; &nbsp; &nbsp; &nbsp;</span></span></span><span style="background-color: #000000;"><span style="color: #ffffff;">Mobiledge</span><span style="color: #ffffff;"><span style="color: #99cc00;">X</span></span></span></h3>
+<h3 style="text-align: left; font-size: 1.5vw;"><span style="background-color: #000000; color: #84de02;"><strong>Apache2 Using Internal<span style="color: #00ff00;"> Port:8076</span><span style="color: #ffffff;">&nbsp;version 12.7.6</span></strong></span></h3>
+<h3 style="text-align: left; font-size: 1.5vw;"><span style="background-color: #000000; color: #84de02;"><strong>&nbsp;cluster=some<span style="color: #ffffff;">cluster </span>app=<span style="color: #00ff00;">jmeterplus8076</span></strong></span></h3>
+<h1 style="text-align: left; font-size: 1.0vw;">command="sh all_measurements.sh 50 testappalertcluster.automationdallascloudlet.packet.mobiledgex.net 35"</h1>
+<h1 style="text-align: left; font-size: 1.0vw;">command="sh all_measurements.sh -run seconds for both tests-(50) cluster.domain-(testappalertcluster.automationdallascloudlet.packet.mobiledgex.net) -seconds delay for jmeter-( 35)"</h1>
+<h1 style="text-align: left; font-size: 1.0vw;">runcommand and accesscloudlet and vssh to run the same tests"</h1>
+<h1 style="text-align: left; font-size: 1.0vw;">mcctl --addr https://console-qa.mobiledgex.net:443 runcommand app-org=automation_dev_org appname=jmeterplus8076 appvers=12.7.6 cloudlet-org=packet cloudlet=automationDallasCloudlet cluster=testappalertcluster region=US command="sh all_measurements.sh 50 testappalertcluster.automationdallascloudlet.packet.mobiledgex.net 35"</h1>
+<h1 style="text-align: left; font-size: 1.0vw;">mcctl --addr https://console-qa.mobiledgex.net:443 accesscloudlet cloudlet=automationDallasCloudlet region=US cloudlet-org=packet node-type=dedicatedrootlb node-name=testappalertcluster.automationdallascloudlet.packet.mobiledgex.net command="export KUBECONFIG=testappalertcluster.packet.kubeconfig;kubectl exec -it --namespace\=\"default\" \$(kubectl get pods | grep 'jmeterplus8076' | cut -d ' ' -f1) -- bash -c 'sh all_measurements.sh 50 testappalertcluster.automationdallascloudlet.packet.mobiledgex.net 35'"</h1>
+<p style="text-align: left; font-size: 1.05vw;">vssh -j ubuntu@139.178.87.230 ubuntu@10.101.1.10 or use a new network added to clusterinst like 10.42.42.3</p>
+<p style="text-align: left; font-size: 1.0vw;">ubuntu@mex-k8s-master-automationdallascloudlet-testappalertcluster-automa:~$ kubectl exec -it $(kubectl get pods | awk '{if ($3 == "Running") print $1}' | grep jmeterplus8076) -- bash -c "sh all_measurements.sh 50 testappalertcluster.automationdallascloudlet.packet.mobiledgex.net 35"</p>
+<p style="text-align: left; font-size: 1.05vw;">bash to the pod under test with accesscloudlet and other scripts with help are in the container</p>
+<p style="text-align: left; font-size: 1.05vw;">mcctl --addr https://console-qa.mobiledgex.net:443 accesscloudlet cloudlet=automationDallasCloudlet region=US cloudlet-org=packet node-type=dedicatedrootlb node-name=testappalertcluster.automationdallascloudlet.packet.mobiledgex.net command="export KUBECONFIG=testappalertcluster.packet.kubeconfig;kubectl exec -it --namespace\=\"default\" \$(kubectl get pods | grep 'jmeterplus8076' | cut -d ' ' -f1) -- bash"</p>
